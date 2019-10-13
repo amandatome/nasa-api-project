@@ -1,0 +1,55 @@
+body {
+  font-size: 18pt;
+  background: url("../images/background-img.jpg") no-repeat center center fixed;
+  background-size: cover;
+
+  /* background-color: black; */
+  color: white;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+}
+
+h5 {
+  color: black;
+}
+h1,
+h2 {
+  font-family: "Stardos Stencil", cursive;
+  text-transform: capitalize;
+}
+
+.card p {
+  color: white;
+  font-size: 16pt;
+}
+
+.jumbotron {
+  background: none !important;
+}
+
+.jumbotron p {
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+button {
+  background-color: #d9b9a7 !important;
+}
+
+hr {
+  background-color: white;
+  border-width: 8px;
+}
+
+a,
+h3 {
+  color: #d9b9a7 !important;
+}
+
+.card {
+  background-color: #736868 !important;
+}
