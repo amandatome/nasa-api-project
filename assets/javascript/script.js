@@ -4,27 +4,28 @@ let buttons = ['Apollo 11', 'Mars', 'Moon Landing', 'ISS', 'Canadarm'];
 //Loop through array and append
 nasaApp.makeButton = () => {
     buttons.forEach(buttonDisplay => {
-        const userButtons = `<button class="btn btn-md mr-2 mb-3" value='${buttonDisplay}' role="button">${buttonDisplay}</button>`
+        const userButtons = `<button class='btn btn-md mr-2 mb-3' value='${buttonDisplay}' role='button'>${buttonDisplay}</button>`
         $('.buttons').append(userButtons)
     });
 };
+
 //WIKIPEDIA API=======================================================================================================
 nasaApp.appendText = (title, text, link) => {
     const textTitle = `<h2 class='display-4'>${title}</h2>`;
     const paragraph = `<p>${text}</p>`;
-    const linkUrl = `Read more at <a target=_blank href="${link}">${link}</a>`;
+    const linkUrl = `Read more at <a target=_blank href='${link}'>${link}</a>`;
     $('#text-title').append(textTitle);
     $('#nasa-paragraph').append(paragraph);
     $('#nasa-paragraph').append(linkUrl);
 };
 
-nasaApp.wikiURL = "https://en.wikipedia.org/w/api.php";
+nasaApp.wikiURL = 'https://en.wikipedia.org/w/api.php';
 //API Call - NASA Info
 nasaApp.getTextResources = () => {
     $.ajax({
         url: `${nasaApp.wikiURL}`,
-        method: "GET",
-        dataType: "jsonP",
+        method: 'GET',
+        dataType: 'jsonP',
         //Pass parameters as data objects
         data: {
             action: 'opensearch',
@@ -41,8 +42,8 @@ nasaApp.getTextResources = () => {
 nasaApp.getSearchResources = (query) => {
     $.ajax({
         url: `${nasaApp.wikiURL}`,
-        method: "GET",
-        dataType: "jsonP",
+        method: 'GET',
+        dataType: 'jsonP',
         //Pass parameters as data objects
         data: {
             action: 'opensearch',
@@ -56,7 +57,7 @@ nasaApp.getSearchResources = (query) => {
         for (let i = 0; i < result.length; i++) {
             const moreTitles = result[1][i];
             const moreLinks = result[3][i]
-            const otherOptions = `<ul class='ml-5'><li><a target=_blank href='${moreLinks}'>${moreTitles}</a></li></ul>`;
+            const otherOptions = `<ul class='ml-3'><li><a target=_blank href='${moreLinks}'>${moreTitles}</a></li></ul>`;
             $('#extra-info').append(otherOptions);
         };
         nasaApp.appendText(result[0], result[2][0], result[3][0]);
@@ -70,8 +71,8 @@ nasaApp.apiKey = 'JmlFzDiOm6OqPOcorofcLCfA4Oof3sUvRqlbgEAC',
 nasaApp.getPhotoResources = () => {
     $.ajax({
         url: `${nasaApp.baseUrlPhoto}`,
-        method: "GET",
-        dataType: "json",
+        method: 'GET',
+        dataType: 'json',
         //Pass parameters as data objects
         data: {
             api_key: nasaApp.apiKey,
@@ -79,12 +80,12 @@ nasaApp.getPhotoResources = () => {
     }).then(result => {
         const imageUrl = result.url;
         const imageTitle = result.title;
-        const imageOfDay = `<div class="card text-center ml-3">
-       <img src=${imageUrl} class="card-img-top " alt="${imageTitle}">
-       <div class="card-body">
-       <h4 class="card-title">${imageTitle}</h4>
+        const imageOfDay = `<div class='card text-center ml-3'>
+       <img src=${imageUrl} class='card-img-top ' alt='${imageTitle}'>
+       <div class='card-body'>
+       <h4 class='card-title'>${imageTitle}</h4>
         </div>
-        <div class="card-footer text-muted">Courtesy of NASA APOD API</div>
+        <div class='card-footer text-muted'>Image of the Day courtesy of NASA APOD API</div>
       </div>`;
         $('#extra-info').append(imageOfDay);
     });
@@ -103,13 +104,13 @@ nasaApp.displayImages = function (card) {
         let descriptionSummary = description.substr(0, Math.min(description.length, description.lastIndexOf(' ')))
         const image = result.links[0].href;
         //Create HTML for NASA Info
-        const display = `<div class="card text-center">
-                               <img src=${image} class="card-img-top" alt="${title}">
-                                <div class="card-body ">
-                                  <h4 class="card-title text-center">${title}</h4>
-                                  <p class="card-text">${descriptionSummary}...</p>
+        const display = `<div class='card text-center'>
+                               <img src=${image} class='card-img-top' alt='${title}'>
+                                <div class='card-body '>
+                                  <h4 class='card-title text-center'>${title}</h4>
+                                  <p class='card-text'>${descriptionSummary}...</p>
                                 </div>
-                                <div class="card-footer text-center text-muted">
+                                <div class='card-footer text-center text-muted'>
                                 <a target=_blank href=https://images.nasa.gov/details-${id}>Learn More</a>
                                 </div>
                         </div>`;
@@ -152,8 +153,8 @@ nasaApp.baseUrl = 'https://images-api.nasa.gov';
 nasaApp.getResources = (query) => {
     $.ajax({
         url: `${nasaApp.baseUrl}/search`,
-        method: "GET",
-        dataType: "json",
+        method: 'GET',
+        dataType: 'json',
         //Pass parameters as data objects
         data: {
             q: query,

@@ -9,7 +9,7 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'
         integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
     <!--Typography-->
-    <link href="https://fonts.googleapis.com/css?family=Raleway|Stardos+Stencil&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Raleway|Stardos+Stencil&display=swap' rel='stylesheet'>
     <!--Bootstrap-->
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
         integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
@@ -19,13 +19,14 @@
 </head>
 
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Space: The Final Frontier</h1>
-            <p class="lead">These are the voyages of the NASA Image and Video Library API, NASA APOD API and the
-                Wikipedia API. Their mission: to bring you images and information about strange new worlds and
+    <div class='jumbotron jumbotron-fluid'>
+        <div class='container'>
+            <h1 class='display-4'>Space: The Final Frontier</h1>
+            <p class='lead'>These are the voyages of the <a target='_blank' href='https://api.nasa.gov/'>NASA Image and Video Library API</a>, <a target='_blank' href='https://api.nasa.gov/'>NASA APOD (Astronomy Picture of the Day) API</a> and the
+                <a target='_blank' href='https://en.wikipedia.org/w/api.php'>Wikipedia API</a>. Their mission: to bring you images and information about strange new worlds and
                 civilizations and show you where few have gone before.</p>
-            <p class="lead">To use the application, click on one of the pre-selected topics or enter a topic of your
+                <hr class='my-4 mt-5'>
+            <p class='lead'>To use the application, click on one of the pre-selected topics or enter a topic of your
                 choice in the search box.</p>
             <div class='row mt-5'>
                 <div class='col-md-8'>
@@ -34,15 +35,16 @@
                     </div>
                 </div>
                 <div class='col-md-4'>
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-md" id='search' type="submit">Search</button>
+                    <form class='form-inline'>
+                        <input class='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search'>
+                        <button class='btn btn-md' id='search' type='submit'>Search<i class='fas fa-rocket ml-2'></i></button>
                     </form>
                 </div>
 
             </div>
-            <hr class="my-4 mt-5">
+            <hr class='my-4 mt-5' id='separator'>
         </div>
+
     </div>
     <!--Content Area-->
     <div class='container'>
