@@ -9,27 +9,25 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'
         integrity='sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr' crossorigin='anonymous'>
     <!--Typography-->
-    <link href="https://fonts.googleapis.com/css?family=Stardos+Stencil&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Stardos+Stencil&display=swap" rel="stylesheet">
     <!--Bootstrap-->
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
         integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
     <!--CSS-->
     <link rel='stylesheet' href='./assets/css/style.css' type='text/css'>
-    <title>NASA API</title>
+    <title>Space: The Final Frontier</title>
 </head>
 
 <body>
-
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">Explore Space</h1>
-            <p class="lead">This site provides users with images and videos pulled from NASA images and video API. The
-                text is provided by the Wikipedia API.</p>
-        </div>
-    </div>
-        
-        <div class='container'>
-            <div class='row'>
+            <h1 class="display-4">Space: The Final Frontier</h1>
+            <p class="lead">These are the voyages of the NASA Image and Video Library API, NASA APOD API and the
+                Wikipedia API. Their mission: to bring you images and information about strange new worlds and
+                civilizations and show you where few have gone before.</p>
+            <p class="lead">To use the application, click on one of the pre-selected topics or enter a topic of your
+                choice in the search box.</p>
+            <div class='row mt-5'>
                 <div class='col-md-8'>
                     <div class='buttons'>
                         <!--Append Buttons Here-->
@@ -41,48 +39,46 @@
                         <button class="btn btn-md" id='search' type="submit">Search</button>
                     </form>
                 </div>
-                
+
             </div>
             <hr class="my-4 mt-5">
-            <div class='row mt-5'>
-                    <div class='col-md-12' id='text-title'>
-                            <!--Append Wikipedia title-->
-                            </div>
-                <div class='col-md-9' id='nasa-paragraph'>
-                <!--Append brief info and link-->
-                </div>
-                <div class='col-md-3' id='extra-info'>
-                        <!--Append brief info and link-->
-                        </div>
+        </div>
+    </div>
+    <!--Content Area-->
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-12' id='text-title'>
+                <!--Append Wikipedia title-->
             </div>
         </div>
-        <!--Image Results-->
-        <div class='container'>
-            <div class='row mt-5'>
-                <div class='card-columns results'>
-                </div>
-                </div>
-            </div>  
-
-
-
-
-       
-
-
-
-        <!--jQuery-->
-        <script src='https://code.jquery.com/jquery-3.4.1.min.js'
-            integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
-        <!--Bootstrap Addons-->
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
-            integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
-            crossorigin='anonymous'></script>
-        <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
-            integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
-            crossorigin='anonymous'></script>
-        <!--JavaScript-->
-        <script src='assets/javascript/script.js'></script>
+        <div class='row'>
+            <div class='col-md-8' id='nasa-paragraph'>
+                <!--Append brief info and link-->
+            </div>
+            <div class='col-md-4' id='extra-info'>
+                <!--Append brief extra links-->
+            </div>
+        </div>
+    </div>
+    <!--Image Results-->
+    <div class='container'>
+        <div class='row mt-5'>
+            <div class='card-columns results'>
+            </div>
+        </div>
+    </div>
+    <!--jQuery-->
+    <script src='https://code.jquery.com/jquery-3.4.1.min.js'
+        integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
+    <!--Bootstrap Addons-->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
+        integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+        crossorigin='anonymous'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
+        integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+        crossorigin='anonymous'></script>
+    <!--JavaScript-->
+    <script src='assets/javascript/script.js'></script>
 
 </body>
 
