@@ -13,10 +13,30 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-//VARIABLES=====================================================================================================================
+
 const database = firebase.database();
-// =======================================================================================================
-let buttons = ['Apollo 11', 'Mars', 'Moon Landing', 'ISS', 'Canadarm'];
+let first = 0;
+let last = 21;
+let storedResult = [];
+
+//SCROLL BUTTON===============================================================
+$(window).scroll(function () {
+    if ($(this).scrollTop() > 50) {
+        $('#back-to-top').fadeIn();
+    } else {
+        $('#back-to-top').fadeOut();
+    }
+});
+// scroll body to 0px on click
+$('#back-to-top').click(function () {
+    $('body,html').animate({
+        scrollTop: 0
+    }, 400);
+    return false;
+});
+
+// ===========================================================================
+let buttons = ['Black Holes', 'Comets', 'Moon Landing', 'Mars Rover', 'Solar System'];
 //Loop through array and append
 nasaApp.makeButton = () => {
     buttons.forEach(buttonDisplay => {
@@ -25,7 +45,7 @@ nasaApp.makeButton = () => {
     });
 };
 
-//WIKIPEDIA API=======================================================================================================
+//WIKIPEDIA API===============================================================
 nasaApp.appendText = (title, text, link) => {
     const textTitle = `<h2 class='display-4'>${title}</h2>`;
     const paragraph = `<p>${text}</p>`;
@@ -80,7 +100,7 @@ nasaApp.getSearchResources = (query) => {
     });
 };
 
-//NASA IMAGE OF DAY API=======================================================================================================
+//NASA IMAGE OF DAY API=======================================================
 nasaApp.apiKey = 'JmlFzDiOm6OqPOcorofcLCfA4Oof3sUvRqlbgEAC',
     nasaApp.baseUrlPhoto = 'https://api.nasa.gov/planetary/apod?'
 
@@ -104,11 +124,55 @@ nasaApp.getPhotoResources = () => {
         <div class='card-footer text-muted'>Image of the Day courtesy of NASA APOD API</div>
       </div>`;
         $('#extra-info').append(imageOfDay);
+    }).catch(function (err) {
+        console.error(err);
     });
 };
 
-//NASA API=======================================================================================================
-//Loop through results
+//NASA API===================================================================
+//Display next and prev
+//Loop through stored results
+nasaApp.storedLoop = () => {
+    for (let k = 0; k < storedResult.length; k++) {
+        const newResults = storedResult[k].slice(first, last)
+        nasaApp.displayImages(newResults)
+    };
+};
+
+$(document).on('click', '#prev', function (event) {
+    const target = event.target;
+    if (target.id === 'prev') {
+        if (first === 0) {
+            //TODO module
+            alert("You are already at the beginning")
+            first = first;
+            last = last;
+        } else {
+            first = first - 22;
+            last = last - 21;
+            $('.results').empty();
+        };
+    };
+    nasaApp.storedLoop();
+});
+
+$(document).on('click', '#next', function (event) {
+    const target = event.target;
+    if (target.id === 'next') {
+        if (last >= 800) {
+            //TODO module
+            alert("You are at the end")
+            first = first;
+            last = last;
+        } else {
+            first = first + 22;
+            last = last + 21;
+            $('.results').empty();
+        };
+    };
+    nasaApp.storedLoop();
+});
+
 nasaApp.displayImages = function (card) {
     //Initial forEach to iterate through results
     card.forEach(function (result) {
@@ -132,17 +196,18 @@ nasaApp.displayImages = function (card) {
                                 <i class='far fa-heart'></i><span>Like</span></button></div>`;
         $('.results').append(display);
         nasaApp.liked('#' + id);
-        nasaApp.remove();      
+        nasaApp.remove();
     });
 };
 
+//Set up favourited items
 nasaApp.liked = (item) => {
     $(item).on('click', function (event) {
+        $('.favourite-section').show();
         let icon = $(this).find('i');
         icon.addClass('fas');
         icon.removeClass('far');
         $(this).attr('disabled', true);
-        // if (icon.hasClass('fas')) {
         //Traverse DOM and get image of corresponding button
         let likedImage = $(this).parent().siblings();
         likedImage = likedImage[0]
@@ -174,7 +239,7 @@ nasaApp.liked = (item) => {
 };
 
 //Remove favourited items
- nasaApp.remove = function() {
+nasaApp.remove = function () {
     $(document).on('click', '.fav', function (event) {
         const keyRef = this.dataset.key;
         database.ref('/liked').child(keyRef).remove();
@@ -222,36 +287,26 @@ nasaApp.getResources = (query) => {
         //Pass parameters as data objects
         data: {
             q: query,
-            page: 1,
+            page: 5,
             media_type: 'image'
         }
     }).then(results => {
         $('.results').empty();
-        reducedResults = results.collection.items.slice(20, 41);
+        let filteredResults = results.collection.items;
+        storedResult.push(filteredResults);
+        let reducedResults = results.collection.items.slice(first, last);
         nasaApp.displayImages(reducedResults);
+    }).catch(function (err) {
+        console.error(err);
     });
 };
-
-$(window).scroll(function () {
-    if ($(this).scrollTop() > 50) {
-        $('#back-to-top').fadeIn();
-    } else {
-        $('#back-to-top').fadeOut();
-    }
-});
-// scroll body to 0px on click
-$('#back-to-top').click(function () {
-    $('body,html').animate({
-        scrollTop: 0
-    }, 400);
-    return false;
-});
 
 nasaApp.init = function () {
     nasaApp.makeButton();
     nasaApp.getPhotoResources();
     nasaApp.getTextResources();
     nasaApp.input();
+    $('.favourite-section').hide();
 };
 
 //Launch application and run init
