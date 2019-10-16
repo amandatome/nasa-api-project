@@ -130,26 +130,39 @@ nasaApp.getPhotoResources = () => {
 };
 
 //NASA API===================================================================
-//Display next and prev
+
 //Loop through stored results
 nasaApp.storedLoop = () => {
     for (let k = 0; k < storedResult.length; k++) {
-        const newResults = storedResult[k].slice(first, last)
+        const newResults = storedResult[k].slice(first, last)       
         nasaApp.displayImages(newResults)
     };
 };
+//Show/Hide Buttons based on number of items displayed
+nasaApp.showHide = () => {
+    if(first === 0) {
+        $('#next').show(); 
+    };
+    if (first >= 21){
+        $('#prev').show();
+    } 
+    if (last >= 105) {
+        $('#next').hide(); 
 
+    }
+}
+
+//Display next and prev
 $(document).on('click', '#prev', function (event) {
     const target = event.target;
     if (target.id === 'prev') {
-        if (first === 0) {
-            //TODO module
-            alert("You are already at the beginning")
-            first = first;
-            last = last;
+        if (first <= 22) {
+            $('#prev').hide();
         } else {
+            $('#prev').show();
             first = first - 22;
             last = last - 21;
+            console.log(first, last)
             $('.results').empty();
         };
     };
@@ -159,15 +172,19 @@ $(document).on('click', '#prev', function (event) {
 $(document).on('click', '#next', function (event) {
     const target = event.target;
     if (target.id === 'next') {
-        if (last >= 800) {
+        if (last >= 83) {
             //TODO module
+            $('#next').hide(); 
             alert("You are at the end")
             first = first;
             last = last;
         } else {
             first = first + 22;
+            console.log(first)
             last = last + 21;
+            console.log(last)
             $('.results').empty();
+            $('#prev').show();
         };
     };
     nasaApp.storedLoop();
@@ -287,15 +304,16 @@ nasaApp.getResources = (query) => {
         //Pass parameters as data objects
         data: {
             q: query,
-            page: 5,
             media_type: 'image'
         }
     }).then(results => {
+        console.log(results)
         $('.results').empty();
         let filteredResults = results.collection.items;
         storedResult.push(filteredResults);
         let reducedResults = results.collection.items.slice(first, last);
         nasaApp.displayImages(reducedResults);
+        nasaApp.showHide();
     }).catch(function (err) {
         console.error(err);
     });
@@ -307,6 +325,8 @@ nasaApp.init = function () {
     nasaApp.getTextResources();
     nasaApp.input();
     $('.favourite-section').hide();
+    $('#prev').hide();
+    $('#next').hide();
 };
 
 //Launch application and run init

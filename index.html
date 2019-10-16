@@ -22,10 +22,13 @@
     <div class='jumbotron jumbotron-fluid'>
         <div class='container'>
             <h1 class='display-4'>Space: The Final Frontier</h1>
-            <p class='lead'>These are the voyages of the <a target='_blank' href='https://api.nasa.gov/'>NASA Image and Video Library API</a>, <a target='_blank' href='https://api.nasa.gov/'>NASA APOD (Astronomy Picture of the Day) API</a> and the
-                <a target='_blank' href='https://en.wikipedia.org/w/api.php'>Wikipedia API</a>. Their mission: to bring you images and information about strange new worlds and
+            <p class='lead'>These are the voyages of the <a target='_blank' href='https://api.nasa.gov/'>NASA Image and
+                    Video Library API</a>, <a target='_blank' href='https://api.nasa.gov/'>NASA APOD (Astronomy Picture
+                    of the Day) API</a> and the
+                <a target='_blank' href='https://en.wikipedia.org/w/api.php'>Wikipedia API</a>. Their mission: to bring
+                you images and information about strange new worlds and
                 civilizations and show you where few have gone before.</p>
-                <hr class='my-4 mt-5'>
+            <hr class='my-4 mt-5'>
             <p class='lead'>To use the application, click on one of the pre-selected topics or enter a topic of your
                 choice in the search box.</p>
             <div class='row mt-5'>
@@ -37,7 +40,8 @@
                 <div class='col-md-4'>
                     <form class='form-inline'>
                         <input class='form-control mr-sm-2' type='search' placeholder='Search' aria-label='Search'>
-                        <button class='btn btn-md' id='search' type='submit'>Search<i class='fas fa-rocket ml-2'></i></button>
+                        <button class='btn btn-md' id='search' type='submit'>Search<i
+                                class='fas fa-rocket ml-2'></i></button>
                     </form>
                 </div>
             </div>
@@ -79,23 +83,26 @@
             <div class='card-columns results'>
             </div>
         </div>
-        <div class='row mt-5'>
-                <button class='btn' id='prev'>Previous</button></div>
+        <div class='row mt-5 d-flex justify-content-between'>
+            <button class='btn' id='prev'><i class="fas fa-angle-left mr-2"></i>Prev</button>
 
-                <button class='btn' id='next'>Next</button></div>
-            </div>
-        <hr class='my-4 mt-5' id='separator'>
+
+            <button class='btn justify-content-end' id='next'>Next<i class="fas fa-angle-right  ml-2"></i></button></div>
     </div>
-        <a id='back-to-top' href='#' class='btn btn-light btn-lg back-to-top' role='button'><i class='fas fa-chevron-up'></i></a>
-     
-     <!--Footer-->
-     <div class='footer d-flex justify-content-center mt-5'>
+    </div>
+    <hr class='my-4 mt-5' id='separator'>
+    </div>
+    <a id='back-to-top' href='#' class='btn btn-light btn-lg back-to-top' role='button'><i
+            class='fas fa-chevron-up'></i></a>
+
+    <!--Footer-->
+    <div class='footer d-flex justify-content-center mt-5'>
         <p>Copyright &copy; 2019 - Amanda Tomé</p>
     </div>
-    
+
     <!--Firebase-->
-    <script src='https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js'></script> 
-    <script src='https://www.gstatic.com/firebasejs/7.2.0/firebase-database.js'></script>  
+    <script src='https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js'></script>
+    <script src='https://www.gstatic.com/firebasejs/7.2.0/firebase-database.js'></script>
     <!--jQuery-->
     <script src='https://code.jquery.com/jquery-3.4.1.min.js'
         integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
