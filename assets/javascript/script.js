@@ -1,5 +1,21 @@
 //=======================================================================================================
 const nasaApp = {}
+//INITIALIZE FIREBASE=======================================================================================================
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: 'AIzaSyCXq4OQ4ffH91LbrriWfg5UyJXvXMG9pls',
+    authDomain: 'nasa-api-51f62.firebaseapp.com',
+    databaseURL: 'https://nasa-api-51f62.firebaseio.com',
+    projectId: 'nasa-api-51f62',
+    storageBucket: 'nasa-api-51f62.appspot.com',
+    messagingSenderId: '284626038035',
+    appId: '1:284626038035:web:1904faed193f8dfa48fee6'
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+//VARIABLES=====================================================================================================================
+const database = firebase.database();
+// =======================================================================================================
 let buttons = ['Apollo 11', 'Mars', 'Moon Landing', 'ISS', 'Canadarm'];
 //Loop through array and append
 nasaApp.makeButton = () => {
@@ -105,16 +121,64 @@ nasaApp.displayImages = function (card) {
         const image = result.links[0].href;
         //Create HTML for NASA Info
         const display = `<div class='card text-center'>
-                               <img src=${image} class='card-img-top' alt='${title}'>
-                                <div class='card-body '>
+                               <img src=${image} class='card-img-top img-thumbnail' alt='${title}'/>
+                                <div class='card-body'>
                                   <h4 class='card-title text-center'>${title}</h4>
                                   <p class='card-text'>${descriptionSummary}...</p>
+                                  <a class='learn-more' target=_blank href=https://images.nasa.gov/details-${id}>Learn More</a>
                                 </div>
                                 <div class='card-footer text-center text-muted'>
-                                <a target=_blank href=https://images.nasa.gov/details-${id}>Learn More</a>
-                                </div>
-                        </div>`;
+                                <button class='btn heart' id=${id}>
+                                <i class='far fa-heart'></i><span>Like</span></button></div>`;
         $('.results').append(display);
+        nasaApp.liked('#' + id);
+        nasaApp.remove();      
+    });
+};
+
+nasaApp.liked = (item) => {
+    $(item).on('click', function (event) {
+        let icon = $(this).find('i');
+        icon.addClass('fas');
+        icon.removeClass('far');
+        $(this).attr('disabled', true);
+        // if (icon.hasClass('fas')) {
+        //Traverse DOM and get image of corresponding button
+        let likedImage = $(this).parent().siblings();
+        likedImage = likedImage[0]
+        likedImage = $(likedImage).attr('src');
+        //Traverse DOM and get title of corresponding button
+        let likedTitle = $(this).parent().siblings();
+        likedTitle = likedTitle[1]
+        likedTitle = $(likedTitle).find('.card-title').html();
+
+        //Save to object
+        let liked = { likedImage, likedTitle };
+
+        //Save object to firebase for storage
+        database.ref('/liked').push(liked);
+
+        database.ref('/liked').once('child_added', function (childSnapshot) {
+            const key = childSnapshot.key;
+            const favImage = childSnapshot.val().likedImage;
+            const favTitle = childSnapshot.val().likedTitle;
+
+            //Append to DOM
+            const likedCard = `<div class='card text-center favourite' id=${item}>
+                    <img src=${favImage} class='card-img-top img-thumbnail mb-4' alt='${favTitle}'/>
+                     <div class='card-footer fav-button text-center liked text-muted'>
+                     <button class='btn fav' data-key=${key}>Remove</button></div>`;
+            $('#fav').append(likedCard)
+        });
+    });
+};
+
+//Remove favourited items
+ nasaApp.remove = function() {
+    $(document).on('click', '.fav', function (event) {
+        const keyRef = this.dataset.key;
+        database.ref('/liked').child(keyRef).remove();
+        $(this).closest('.card').remove();
     });
 };
 
@@ -132,7 +196,7 @@ nasaApp.input = () => {
 
     $('form').on('submit', (event) => {
         event.preventDefault();
-        inputValue = $('input').val();
+        inputValue = $('input').val().trim();
         $('input').val('');
         //Make a new button
         buttons.push(inputValue);
@@ -167,6 +231,21 @@ nasaApp.getResources = (query) => {
         nasaApp.displayImages(reducedResults);
     });
 };
+
+$(window).scroll(function () {
+    if ($(this).scrollTop() > 50) {
+        $('#back-to-top').fadeIn();
+    } else {
+        $('#back-to-top').fadeOut();
+    }
+});
+// scroll body to 0px on click
+$('#back-to-top').click(function () {
+    $('body,html').animate({
+        scrollTop: 0
+    }, 400);
+    return false;
+});
 
 nasaApp.init = function () {
     nasaApp.makeButton();

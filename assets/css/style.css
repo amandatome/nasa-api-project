@@ -44,6 +44,7 @@ button {
   background-color: #d9b9a7 !important;
   font-weight: 900 !important;
   font-size: 16pt !important;
+  text-transform: capitalize;
 }
 
 .card-footer {
@@ -72,7 +73,7 @@ hr {
 
 a,
 h4 {
-  color: #d9b9a7!important;
+  color: #d9b9a7 !important;
 }
 
 .card {
@@ -84,5 +85,92 @@ h4 {
 }
 
 li {
-    color: #d9b9a7 !important
+  color: #d9b9a7 !important;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: none;
+  background-color: #d9b9a7 !important;
+}
+.back-to-top i {
+  color: black
+}
+/* Like Button */
+
+/* .button-like {
+  border: 2px solid #8a8a8a;
+  background-color: transparent;
+  text-decoration: none;
+  padding: 1rem;
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+  display: inline-block;
+  border-radius: 3rem;
+  color: #8a8a8a;
+  transition: all ease 0.4s;
+}
+
+.button-like span {
+  margin-left: 1rem;
+} */
+
+/* .button-like .fa,
+  .button-like span {
+    transition: all ease 0.4s;
+  }
+  
+  .button-like:focus {
+    background-color: transparent;
+  }
+  
+  .button-like:focus .fa,
+  .button-like:focus span {
+    color: #8a8a8a;
+  }
+  
+  .button-like:hover {
+    border-color: #cc4b37;
+    background-color: transparent;
+  }
+  
+  .button-like:hover .fa,
+  .button-like:hover span {
+    color: #cc4b37;
+  }
+  
+  .liked {
+    background-color: #cc4b37;
+    border-color: #cc4b37;
+  }
+  
+  .liked .fa,
+  .liked span {
+    color: #fefefe;
+  }
+  
+  .liked:focus {
+    background-color: #cc4b37;
+  }
+  
+  .liked:focus .fa,
+  .liked:focus span {
+    color: #fefefe;
+  }
+  
+  .liked:hover {
+    background-color: #cc4b37;
+    border-color: #cc4b37;
+  }
+  
+  .liked:hover .fa,
+  .liked:hover span {
+    color: #fefefe;
+  } */
+
+input {
+  text-transform: capitalize;
 }
