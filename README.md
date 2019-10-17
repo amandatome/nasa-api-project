@@ -10,6 +10,7 @@ https://amandatome.github.io/nasa-api-project/
 * Bootstrap 4
 * JavaScript
 * jQuery
+* Firebase
 
 ## How It Works
 To use the application, click on one of the pre-selected topics or enter a topic of your choice in the search box.
