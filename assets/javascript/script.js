@@ -1,6 +1,6 @@
-//=======================================================================================================
+//================================================================================
 const nasaApp = {}
-//INITIALIZE FIREBASE=======================================================================================================
+//INITIALIZE FIREBASE==========================================================================
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: 'AIzaSyCXq4OQ4ffH91LbrriWfg5UyJXvXMG9pls',
@@ -36,7 +36,7 @@ $('#back-to-top').click(function () {
 });
 
 // ===========================================================================
-let buttons = ['Black Holes', 'Comets', 'Moon Landing', 'Mars Rover', 'Solar System'];
+let buttons = ['Sun', 'Stars', 'Moon Landing', 'Mars Rover', 'Solar System'];
 //Loop through array and append
 nasaApp.makeButton = () => {
     buttons.forEach(buttonDisplay => {
@@ -93,7 +93,8 @@ nasaApp.getSearchResources = (query) => {
         for (let i = 0; i < result.length; i++) {
             const moreTitles = result[1][i];
             const moreLinks = result[3][i]
-            const otherOptions = `<ul class='ml-3'><li><a target=_blank href='${moreLinks}'>${moreTitles}</a></li></ul>`;
+            const otherOptions = `
+            <ul class='ml-3'><li><a target=_blank href='${moreLinks}'>${moreTitles}</a></li></ul>`;
             $('#extra-info').append(otherOptions);
         };
         nasaApp.appendText(result[0], result[2][0], result[3][0]);
@@ -138,6 +139,7 @@ nasaApp.storedLoop = () => {
         nasaApp.displayImages(newResults)
     };
 };
+
 //Show/Hide Buttons based on number of items displayed
 nasaApp.showHide = () => {
     if(first === 0) {
@@ -145,12 +147,11 @@ nasaApp.showHide = () => {
     };
     if (first >= 21){
         $('#prev').show();
-    } 
+    };
     if (last >= 105) {
         $('#next').hide(); 
-
-    }
-}
+    };
+};
 
 //Display next and prev
 $(document).on('click', '#prev', function (event) {
@@ -162,7 +163,6 @@ $(document).on('click', '#prev', function (event) {
             $('#prev').show();
             first = first - 22;
             last = last - 21;
-            console.log(first, last)
             $('.results').empty();
         };
     };
@@ -173,16 +173,12 @@ $(document).on('click', '#next', function (event) {
     const target = event.target;
     if (target.id === 'next') {
         if (last >= 83) {
-            //TODO module
             $('#next').hide(); 
-            alert("You are at the end")
             first = first;
             last = last;
         } else {
             first = first + 22;
-            console.log(first)
             last = last + 21;
-            console.log(last)
             $('.results').empty();
             $('#prev').show();
         };
@@ -210,7 +206,7 @@ nasaApp.displayImages = function (card) {
                                 </div>
                                 <div class='card-footer text-center text-muted'>
                                 <button class='btn heart' id=${id}>
-                                <i class='far fa-heart'></i><span>Like</span></button></div>`;
+                                <i class='mr-2 far fa-heart'></i><span>Like</span></button></div>`;
         $('.results').append(display);
         nasaApp.liked('#' + id);
         nasaApp.remove();
@@ -249,8 +245,8 @@ nasaApp.liked = (item) => {
             const likedCard = `<div class='card text-center favourite' id=${item}>
                     <img src=${favImage} class='card-img-top img-thumbnail mb-4' alt='${favTitle}'/>
                      <div class='card-footer fav-button text-center liked text-muted'>
-                     <button class='btn fav' data-key=${key}>Remove</button></div>`;
-            $('#fav').append(likedCard)
+                     <button class='btn fav' data-key=${key}><i class="mr-2 far fa-trash-alt"></i>Remove</button></div>`;
+            $('#fav').append(likedCard);
         });
     });
 };
@@ -307,7 +303,6 @@ nasaApp.getResources = (query) => {
             media_type: 'image'
         }
     }).then(results => {
-        console.log(results)
         $('.results').empty();
         let filteredResults = results.collection.items;
         storedResult.push(filteredResults);
