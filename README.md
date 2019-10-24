@@ -16,8 +16,8 @@ https://amandatome.github.io/nasa-api-project/
 To use the application, click on one of the pre-selected topics or enter a topic of your choice in the search box.
 
 ## To Improve
-- []Liked objects -toggle like adds and removes items from Firebase
-- [] Fix pagination
+* [ ] Liked objects -toggle like adds and removes items from Firebase
+* [ ] Fix pagination
 
 ## Screen Capture
 ![NASA API](nasa-api.png)
