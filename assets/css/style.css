@@ -42,7 +42,7 @@ button {
 }
 
 button:hover {
-  border: #d9b9a7 solid 3px!important;
+  border: #d9b9a7 solid 1px!important;
   color: #fff!important;
   background-color: transparent!important;
 }
@@ -102,4 +102,47 @@ li {
 
 .back-to-top i {
   color: black
+}
+/*MEDIA QUERIES************************/
+
+
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+}
+@media screen and (min-width: 981px) and (max-width: 1024px) {
+ 
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 980px) {
+  .jumbotron .container .row form button {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 768px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 640px) {
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+    .jumbotron {
+      text-align: center;
+    }
+    .jumbotron .container .row form button {
+      margin-top: 1rem;
+    }
+    .content {
+      text-align: center;
+    }
+    #extra-info{
+      text-align: left;
+    }
+    .footer {
+      text-align: center;
+    }
 }

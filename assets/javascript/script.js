@@ -40,7 +40,7 @@ let buttons = ['Sun', 'Stars', 'Moon Landing', 'Mars Rover', 'Solar System'];
 //Loop through array and append
 nasaApp.makeButton = () => {
     buttons.forEach(buttonDisplay => {
-        const userButtons = `<button class='btn btn-md mr-2 mb-3' value='${buttonDisplay}' role='button'>${buttonDisplay}</button>`
+        const userButtons = `<button class='btn btn-md mr-2 mb-3' value='${buttonDisplay}' role='button'>${buttonDisplay}</button>`;
         $('.buttons').append(userButtons)
     });
 };
