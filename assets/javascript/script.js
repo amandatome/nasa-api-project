@@ -49,7 +49,7 @@ nasaApp.makeButton = () => {
 nasaApp.appendText = (title, text, link) => {
     const textTitle = `<h2 class='display-4'>${title}</h2>`;
     const paragraph = `<p>${text}</p>`;
-    const linkUrl = `Read more at <a target=_blank href='${link}'>${link}</a>`;
+    const linkUrl = `Read more at <a class='wrap' target=_blank href='${link}'>${link}</a>`;
     $('#text-title').append(textTitle);
     $('#nasa-paragraph').append(paragraph);
     $('#nasa-paragraph').append(linkUrl);

@@ -90,6 +90,12 @@ li {
 
 #nasa-paragraph {
   border-right: 1px solid rgba(255, 255, 255, 0.5);
+ 
+}
+
+.wrap{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .back-to-top {
@@ -106,12 +112,6 @@ li {
 /*MEDIA QUERIES************************/
 
 
-@media screen and (min-width: 1025px) and (max-width: 1280px) {
-}
-@media screen and (min-width: 981px) and (max-width: 1024px) {
- 
-
-}
 
 @media screen and (min-width: 769px) and (max-width: 980px) {
   .jumbotron .container .row form button {
@@ -144,5 +144,8 @@ li {
     }
     .footer {
       text-align: center;
+    }
+    .back-to-top {
+      display: none; 
     }
 }
